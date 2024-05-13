@@ -5,15 +5,10 @@ const {
   getPropertyListController,
   getReservationListController,
 } = require("../controllers/userController");
-const { authMiddleware } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 router.get("/:userId/trips", getTripListController);
-router.patch(
-  "/:userId/:listingId",
-  authMiddleware,
-  addListingToWishlistController
-);
+router.patch("/:userId/:listingId", addListingToWishlistController);
 router.get("/:userId/properties", getPropertyListController);
 router.get("/:userId/reservations", getReservationListController);
 

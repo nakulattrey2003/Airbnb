@@ -7,7 +7,6 @@ const {
   getListingBySearchController,
   getListingDetailsController,
 } = require("../controllers/listingController");
-const { authMiddleware } = require("../middlewares/authMiddleware.js");
 
 /* Configuration Multer for File Upload */
 const storage = multer.diskStorage({
@@ -21,12 +20,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.post(
-  "/create",
-  authMiddleware,
-  upload.array("listingPhotos"),
-  createListingController
-);
+router.post("/create", upload.array("listingPhotos"), createListingController);
 router.get("/", getListingByCategoryController); // ex. clicking windmills icon
 router.get("/search/:search", getListingBySearchController); // ex. searching for listing as category - windmills or title - beautiful beach house
 router.get("/:listingId", getListingDetailsController); // ex. searching the list with id - 662dc0be56908a8b00d33c7c
