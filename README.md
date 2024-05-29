@@ -43,14 +43,6 @@ Search Page
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/d3af172b-bd6d-4a14-a51d-7adb1877ce07)
 
 
-# Lists Mentioned
-
-Trip List : The list of hotels that you have booked.
-Wish List : The list of hotels that you have liked.
-Property List : The list of hotels that you have hosted. Property you have owned
-Reservation List : The list of hotels that you have hosted that people have booked. Your property that someone else had booked.
-
-
 ## Description
 The Property Booking Platform is designed to provide users with a versatile and efficient platform for booking properties. With Firebase OAuth authentication, users can securely manage their accounts and bookings. The integration of Redux ensures efficient state management, while advanced search and filtering functionalities enhance the user experience. Admin panel management allows admins to oversee and manage property listings and user data effectively.
 

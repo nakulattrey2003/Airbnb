@@ -1,12 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const colors = require("colors");
 
 const app = express();
 
-const authRoute = require("./routes/authRoute");
+const authRoutes = require("./routes/authRoute.js");
 const listingRoutes = require("./routes/listingRoute.js");
 const bookingRoutes = require("./routes/bookingRoute.js");
 const userRoutes = require("./routes/userRoute.js");

@@ -62,7 +62,7 @@ const createListingController = async (req, res) => {
     res.status(200).json(newListing);
   } catch (err) {
     res
-      .status(409)
+      .status(500)
       .json({ message: "Fail to create Listing", error: err.message });
     console.log(err);
   }

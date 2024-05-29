@@ -1,0 +1,223 @@
+@import "./variables.scss";
+@import "./breakpoints.scss";
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 150px; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+.login {
+  width: 100vw;
+  height: 100vh; // to get the full height
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: whitesmoke;
+  // background: url("../../public/assets/login.jpg") center;
+  background-size: cover;
+
+  .login-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 40%;
+    padding: 40px;
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.95
+    ); // Adjusted background color to white with opacity
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Added box shadow for depth effect
+
+    @include lg {
+      width: 60%;
+    }
+
+    @include mm {
+      width: 80%;
+    }
+
+    &_form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+
+      input {
+        width: 100%;
+        padding: 10px; // Increased padding for input fields
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.1
+        ); // Adjusted background color to white with opacity
+        border: 1px solid rgba(0, 0, 0, 0.1); // Added border for input fields
+        border-radius: 8px; // Added border radius for input fields
+        outline: none;
+        color: black; // Changed text color to black
+        font-size: 16px; // Increased font size for input fields
+
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.6); // Adjusted placeholder color
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #ff385c; // Airbnb's primary color
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #e20031; // Darker shade on hover
+        }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: #ff385c; // Airbnb's primary color
+      font-size: 16px;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    p {
+      color: rgba(0, 0, 0, 0.5); // Adjusted text color to grey
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+// .login {
+//   width: 100vw;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   background: url("../../public/assets/login.jpg") center;
+//   background-size: cover;
+
+//   &_content {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 15px;
+//     width: 40%;
+//     padding: 40px;
+//     background-color: rgba(0, 0, 0, 0.8);
+//     border-radius: 20px;
+
+//     @include lg {
+//       width: 60%
+//     }
+
+//     @include mm {
+//       width: 80%
+//     }
+
+//     &_form {
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       gap: 15px;
+
+//       input {
+//         width: 100%;
+//         padding: 7px 15px;
+//         background-color: transparent;
+//         border: none;
+//         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+//         outline: none;
+//         text-align: center;
+//         color: white;
+
+//         input:not(:placeholder-shown):focus {
+//           background: transparent; /* or background: none; */
+//         }
+
+//         &::placeholder {
+//           color: white;
+//         }
+//       }
+
+//       button {
+//         margin-top: 15px;
+
+//         @include buttonStyle;
+//         width: 50%;
+
+//         &:hover {
+//           box-shadow: 0 0 10px 3px rgba(255, 255, 255);
+//         }
+//       }
+//     }
+
+//     &_google {
+//       width: 100%;
+//       display: flex;
+//       justify-content: center;
+//       margin-top: 20px;
+//     }
+
+//     a {
+//       text-decoration: none;
+//       color: white;
+//       font-size: 17px;
+//       font-weight: 600;
+//       text-align: center;
+
+//       &:hover {
+//         text-decoration: underline;
+//       }
+//     }
+
+//     p {
+//       color: white;
+//       font-size: 13px;
+//       text-align: center;
+//     }
+//   }
+// }

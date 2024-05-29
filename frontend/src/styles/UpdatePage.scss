@@ -1,0 +1,137 @@
+@import "./variables.scss"; // Adjust the path according to your project structure
+
+.update-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: $lightgrey;
+  font-family: Arial, sans-serif;
+
+  .update-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 28px;
+    color: $blue;
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 40%;
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      border: 1px solid $grey;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #F8824D;
+        outline: none;
+      }
+    }
+
+    .password-container {
+      display: flex;
+      width: 90%;
+
+      input {
+        flex: 1;
+        margin-right: 10px;
+      }
+
+      .toggle-password-btn {
+        background-color: $pinkred;
+        border: none;
+        color: white;
+        padding: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 20%;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: darken($pinkred, 10%);
+        }
+      }
+    }
+
+    .image-uploader {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px dashed $grey;
+      border-radius: 6px;
+      width: 90%;
+      text-align: center;
+      transition: border-color 0.3s;
+
+      &:hover {
+        border-color: $pinkred;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+
+      p {
+        margin-left: 10px;
+        color: $blue;
+      }
+    }
+
+    .photo-preview {
+      width: 80px;
+      height: 80px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      object-fit: cover;
+      border: 1px solid $grey;
+    }
+
+    button {
+      width: 90%;
+      padding: 12px;
+      background-color: #F8824D;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 15px;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+
+      &:hover {
+        background-color: darken(#F8824D, 10%);
+      }
+    }
+  }
+}
