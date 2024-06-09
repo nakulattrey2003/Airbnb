@@ -5,6 +5,7 @@ import "../styles/UpdatePage.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateUserProfile } from "../redux/state.js";
+import Navbar from "../components/Navbar.jsx"
 
 const UpdatePage = () => {
   const [formData, setFormData] = useState({
@@ -75,6 +76,8 @@ const UpdatePage = () => {
   };
 
   return (
+    <div>
+      <Navbar />
     <div className="update-page">
       <h1 className="update-header">Update Profile</h1>
       <form onSubmit={handleSubmit}>
@@ -122,6 +125,7 @@ const UpdatePage = () => {
         <button type="submit">Update</button>
       </form>
       <ToastContainer />
+    </div>
     </div>
   );
 };
