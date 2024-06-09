@@ -8,7 +8,7 @@ Welcome to the Property Booking Platform! This versatile website is built using 
 - Redux
 
 ## Features
--Authentication
+- Authentication
 
 Register
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/06c42e31-4a61-4206-9340-1d42f0a8fb39)
@@ -21,44 +21,44 @@ Oauth
 
 
 
-HomePage
+- HomePage
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/aa57ad9b-f169-4026-a452-f2dc3725865d)
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/ac0fcd1d-fdf1-4949-902c-53c697bb0484)
 
 
 
-Pages
+- Pages
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/f9ee07d9-d9f3-4eaa-bfcd-6a5162613d5a)
 
 
 
-Update Profile
+- Update Profile
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/8b62c802-ab61-43b9-9d62-d68f3cb4915c)
 
 
 
-Trip List (The one you have booked)
+- Trip List (The one you have booked)
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/a8f5caf5-ea31-4fa5-b2c7-a23b264a70c4)
 
 
 
-Wish List (The one you have liked)
+- Wish List (The one you have liked)
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/bd6ffb0c-9607-4e19-90b2-4600ce6b7093)
 
 
 
-Property List (The ones you have rented)
+- Property List (The ones you have rented)
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/c22c1e8b-f8b1-4ae1-8100-80883f586606)
 
 
 
-Airbnb your home
+- Airbnb your home
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/3c29f15c-2e7d-4b8b-bc78-03da04daadd9)
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/21f7597c-01d5-40af-af9a-4d83ce511684)
@@ -68,7 +68,7 @@ Airbnb your home
 
 
 
-Search Page
+- Search Page
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/d3af172b-bd6d-4a14-a51d-7adb1877ce07)
 
