@@ -16,7 +16,7 @@ export default function GoAuth() {
       // console.log(provider);
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
-      console.log(result);
+      // console.log(result);
 
       const res = await fetch("http://localhost:5000/auth/google", {
         method: "POST",
@@ -42,10 +42,11 @@ export default function GoAuth() {
         navigate("/");
       } else {
         toast.error("User or Password is Incorrect");
-        console.log("User or Password is Incorrect");
+        // console.log("User or Password is Incorrect");
       }
     } catch (error) {
-      console.log("Error in Google Authentication", error);
+      toast.error("Error in Google Authentication");
+      // console.log("Error in Google Authentication", error);
     }
   };
 

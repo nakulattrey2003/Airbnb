@@ -136,12 +136,13 @@ const CreateListing = () => {
       });
 
       if (response.ok) {
-        console.log("Done");
+        // console.log("Done");
         toast.success("Listing Created Successfully");
         navigate("/");
       }
     } catch (err) {
-      console.log("Publish Listing failed ", err.message);
+      toast.error("Publish Listing failed");
+      // console.log("Publish Listing failed ", err.message);
     }
   };
 

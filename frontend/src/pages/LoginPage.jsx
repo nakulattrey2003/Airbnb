@@ -31,7 +31,7 @@ const LoginPage = () => {
       /* Get data after fetching */
       const loggedIn = await response.json();
 
-      console.log(loggedIn);
+      // console.log(loggedIn);
 
       if (response.ok) {
         toast.success("Login Successfull");
@@ -44,10 +44,11 @@ const LoginPage = () => {
         navigate("/");
       } else {
         toast.error("User or Password is Incorrect");
-        console.log("User or Password is Incorrect");
+        // console.log("User or Password is Incorrect");
       }
     } catch (err) {
-      console.log("Login failed", err.message);
+      toast.error("Login Failed")
+      // console.log("Login failed", err.message);
     }
   };
 

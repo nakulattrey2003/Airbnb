@@ -59,18 +59,17 @@ const RegisterPage = () => {
         body: register_form,
       });
 
-      console.log(response);
-
       if (response.ok) {
         toast.success("User Registered Successfully");
-        console.log("User Registered Successfully");
+        // console.log("User Registered Successfully");
         navigate("/login");
       } else {
         console.log("User Already Exists");
-        toast.error("User Already Exists");
+        // toast.error("User Already Exists");
       }
     } catch (err) {
-      console.log("Registration failed", err.message);
+      toast.error("Registeration Failed")
+      // console.log("Registration failed", err.message);
     }
   };
 

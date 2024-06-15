@@ -7,6 +7,7 @@ import Loader from "../components/Loader"
 import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer"
+import { toast } from "react-toastify";
 
 const SearchPage = () => {
   const [loading, setLoading] = useState(true)
@@ -28,7 +29,8 @@ const SearchPage = () => {
       dispatch(setListings({ listings: data }))
       setLoading(false)
     } catch (err) {
-      console.log("Fetch Search List failed!", err.message)
+      toast.error("Fetch Search List failed!");
+      // console.log("Fetch Search List failed!", err.message)
     }
   }
 

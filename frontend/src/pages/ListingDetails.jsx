@@ -31,7 +31,8 @@ const ListingDetails = () => {
       setListing(data);
       setLoading(false);
     } catch (err) {
-      console.log("Fetch Listing Details Failed", err.message);
+      toast.error("Fetch Listing Details Failed");
+      // console.log("Fetch Listing Details Failed", err.message);
     }
   };
 
@@ -39,7 +40,7 @@ const ListingDetails = () => {
     getListingDetails();
   }, []);
 
-  console.log(listing);
+  // console.log(listing);
 
   /* BOOKING CALENDAR */
   const [dateRange, setDateRange] = useState([
@@ -82,19 +83,25 @@ const ListingDetails = () => {
         totalPrice: listing.price * dayCount,
       };
 
-      const response = await fetch("http://localhost:5000/bookings/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookingForm),
-      });
+      console.log('bookingForm', bookingForm);
 
-      if (response.ok) {
-        navigate(`/${customerId}/trips`);
-      }
+      // payment integeration
+      
+
+      // const response = await fetch("http://localhost:5000/bookings/create", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(bookingForm),
+      // });
+
+      // if (response.ok) {
+      //   navigate(`/${customerId}/trips`);
+      // }
     } catch (err) {
-      console.log("Submit Booking Failed.", err.message);
+      toast.error("Submit Booking Failed.");
+      // console.log("Submit Booking Failed.", err.message);
     }
   };
 

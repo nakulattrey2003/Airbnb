@@ -59,19 +59,19 @@ const UpdatePage = () => {
       );
 
       const updatedUser = await response.json();
-      console.log(updatedUser);
 
       if (response.ok) {
         dispatch(updateUserProfile(updatedUser.user));
         toast.success("User Updated Successfully");
-        console.log("User Updated Successfully");
+        // console.log("User Updated Successfully");
         navigate("/");
       } else {
-        console.log("Some Error in Updating");
+        // console.log("Some Error in Updating");
         toast.error("Some Error in Updating");
       }
     } catch (err) {
-      console.log("Updating user failed", err.message);
+      toast.error("Updating user failed");
+      // console.log("Updating user failed", err.message);
     }
   };
 
