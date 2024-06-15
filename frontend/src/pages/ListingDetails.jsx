@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/ListingDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { facilities } from "../data";
-import {ToastContainer, toast} from "react-toastify";
+import { toast} from "react-toastify";
 
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
@@ -190,7 +190,6 @@ const ListingDetails = () => {
             </div>
           </div>
         </div>
-        <ToastContainer />
       </div>
 
       <Footer />

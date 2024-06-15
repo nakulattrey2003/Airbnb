@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/UpdatePage.scss";
 import { useSelector, useDispatch } from "react-redux";
@@ -124,7 +124,6 @@ const UpdatePage = () => {
         )}
         <button type="submit">Update</button>
       </form>
-      <ToastContainer />
     </div>
     </div>
   );

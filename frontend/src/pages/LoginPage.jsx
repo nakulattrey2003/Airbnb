@@ -3,8 +3,7 @@ import "../styles/Login.scss";
 import { setLogin } from "../redux/state";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 //import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 //import { auth } from "../firebase/firebaseConfig.js";
 import GoAuth from "../components/GoAuth.jsx";
@@ -16,17 +15,6 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
-  const toastOptions = {
-    position: "top-right",
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +34,7 @@ const LoginPage = () => {
       console.log(loggedIn);
 
       if (response.ok) {
-        toast.success("Login Successfull", toastOptions);
+        toast.success("Login Successfull");
         dispatch(
           setLogin({
             user: loggedIn.user,
@@ -92,7 +80,6 @@ const LoginPage = () => {
 
         <a href="/register">Don't have an account? Sign In Here</a>
       </div>
-      <ToastContainer />
     </div>
   );
 };

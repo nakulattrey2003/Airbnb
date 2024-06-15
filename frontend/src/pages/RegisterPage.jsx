@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Register.scss";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GoAuth from "../components/GoAuth";
 //import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -190,7 +190,6 @@ const RegisterPage = () => {
         <GoAuth />
         <a href="/login">Already have an account? Log In Here</a>
       </div>
-      <ToastContainer />
     </div>
   );
 };
