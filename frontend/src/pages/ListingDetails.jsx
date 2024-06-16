@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/ListingDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { facilities } from "../data";
-import { toast} from "react-toastify";
-
+import { toast } from "react-toastify";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
@@ -11,6 +10,7 @@ import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
+import { loadStripe } from "@stripe/stripe-js";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -67,7 +67,6 @@ const ListingDetails = () => {
 
   const handleSubmit = async () => {
     try {
-
       if (!customerId) {
         toast.error("Please Login in First to Book properties");
         navigate("/login");
@@ -83,11 +82,51 @@ const ListingDetails = () => {
         totalPrice: listing.price * dayCount,
       };
 
-      console.log('bookingForm', bookingForm);
+      const body = {
+        amount: bookingForm.totalPrice,
+        listingName: listing.title,
+        startDate: bookingForm.startDate,
+        endDate: bookingForm.endDate,
+        listingPhoto: listing.listingPhotoPaths[0],
+      };
 
       // payment integeration
-      
+      const makePayment = async () => {
+        try {
+          const stripe = await loadStripe(
+            process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
+          );
 
+          const headers = {
+            "Content-Type": "application/json",
+          };
+
+          const response = await fetch(
+            "http://localhost:5000/payment/checkout",
+            {
+              method: "POST",
+              headers: headers,
+              body: JSON.stringify(body),
+            }
+          );
+
+          const session = await response.json();
+
+          const result = stripe.redirectToCheckout({
+            sessionId: session.id,
+          });
+
+          if (result.error) toast.error("Error in Payment from Stripe");
+        } catch (error) {
+          toast.error("Error: Unable to process payment");
+          console.error("Error during payment:", error.message);
+        }
+      };
+
+      makePayment();
+
+      // booking to the user
+      // const bookingUser = () => {
       // const response = await fetch("http://localhost:5000/bookings/create", {
       //   method: "POST",
       //   headers: {
@@ -99,9 +138,12 @@ const ListingDetails = () => {
       // if (response.ok) {
       //   navigate(`/${customerId}/trips`);
       // }
+      // }
+
+      // bookingUser();
+
     } catch (err) {
       toast.error("Submit Booking Failed.");
-      // console.log("Submit Booking Failed.", err.message);
     }
   };
 

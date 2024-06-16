@@ -10,6 +10,7 @@ const authRoutes = require("./routes/authRoute.js");
 const listingRoutes = require("./routes/listingRoute.js");
 const bookingRoutes = require("./routes/bookingRoute.js");
 const userRoutes = require("./routes/userRoute.js");
+const paymentRoutes = require("./routes/paymentRoute.js");
 
 app.use(cors());
 app.use(express.json());
@@ -21,6 +22,7 @@ app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/users", userRoutes);
+app.use("/payment", paymentRoutes)
 
 mongoose
   .connect(process.env.MONGO_URI)

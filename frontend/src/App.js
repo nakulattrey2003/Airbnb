@@ -12,6 +12,8 @@ import ReservationList from "./pages/ReservationList";
 import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
 import UpdatePage from "./pages/UpdatePage";
+import SuccessPage from "./pages/SuccessPage";
+import CancelPage from "./pages/CancelPage";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route path="/:userId/wishList" element={<WishList />} />
           <Route path="/:userId/properties" element={<PropertyList />} />
           <Route path="/:userId/reservations" element={<ReservationList />} />
+          <Route path="/payment/success" element={<SuccessPage />} />
+          <Route path="/payment/cancel" element={<CancelPage />} />
         </Routes>
       </BrowserRouter>
     </div>
