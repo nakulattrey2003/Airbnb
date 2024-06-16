@@ -126,21 +126,21 @@ const ListingDetails = () => {
       makePayment();
 
       // booking to the user
-      // const bookingUser = () => {
-      // const response = await fetch("http://localhost:5000/bookings/create", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(bookingForm),
-      // });
+      const bookingUser = async () => {
+      const response = await fetch("http://localhost:5000/bookings/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingForm),
+      });
 
-      // if (response.ok) {
-      //   navigate(`/${customerId}/trips`);
-      // }
-      // }
+      if (response.ok) {
+        navigate(`/${customerId}/trips`);
+      }
+      }
 
-      // bookingUser();
+      bookingUser();
 
     } catch (err) {
       toast.error("Submit Booking Failed.");
