@@ -127,18 +127,18 @@ const ListingDetails = () => {
       // await makePayment();
 
       // booking to the user
-      const bookingUser = async () => {
-        const response = await fetch("http://localhost:5000/bookings/create", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(bookingForm),
-        });
+      // const bookingUser = async () => {
+      //   const response = await fetch("http://localhost:5000/bookings/create", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(bookingForm),
+      //   });
 
-        if (response.ok) {
-          toast.success("Booking Sucessfull");
-          navigate(`/${customerId}/trips`);
+      //   if (response.ok) {
+      //     toast.success("Booking Sucessfull");
+      //     navigate(`/${customerId}/trips`);
 
           // sending email
           // const emailResponse = await fetch(
@@ -156,8 +156,8 @@ const ListingDetails = () => {
           //     }),
           //   }
           // );
-        }
-      };
+      //   }
+      // };
 
       // await bookingUser();
       const emailResponse = await fetch("http://localhost:5000/payment/email", {
@@ -171,7 +171,6 @@ const ListingDetails = () => {
           text: `Your booking for ${listing.title} from ${bookingForm.startDate} to ${bookingForm.endDate} is confirmed. Total Price: ${bookingForm.totalPrice}`,
         }),
       });
-      console.log('1', 1);
 
       await emailResponse();
     } catch (err) {
@@ -271,9 +270,15 @@ const ListingDetails = () => {
                 onChange={(e) => setEmailData(e.target.value)}
                 placeholder="Write your email to get Booking Confirmation"
                 style={{
-                  border: "1px solid red",
+                  marginTop: "15px",
+                  marginBottom: "-35px",
+                  width: "100%",
+                  height: "47px",
+                  border: "1px solid red", // Initial border style
                   padding: "8px",
-                  borderRadius: "4px",
+                  paddingLeft: "15px",
+                  borderRadius: "9px",
+                  transition: "border-color 0.3s ease-in-out", // Smooth transition for border color change
                 }}
               />
 
