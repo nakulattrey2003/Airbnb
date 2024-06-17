@@ -22,7 +22,7 @@ app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/users", userRoutes);
-app.use("/payment", paymentRoutes)
+app.use("/payment", paymentRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)

@@ -1,5 +1,16 @@
 const express = require("express");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const nodemailer = require("nodemailer");
+
+// Nodemailer setup
+const transporter = nodemailer.createTransport({
+  service: "gmail", // You can use other services like 'Yahoo', 'Outlook', etc.
+  auth: {
+    user: process.env.MAIL_MY_EMAIL, // Replace with your email
+    pass: process.env.MAIL_PASSWORD, // this comes from myaccount.google.com/apppasswords
+  },
+  tls: { rejectUnauthorized: false },
+});
 
 const createPaymentController = async (req, res) => {
   try {
@@ -13,7 +24,7 @@ const createPaymentController = async (req, res) => {
           currency: "usd",
           product_data: {
             name: product.listingName,
-            images: [imageUrl] ,
+            images: [imageUrl],
             description: `Booking from ${product.startDate} to ${product.endDate}`,
             metadata: {
               startDate: product.startDate,
@@ -41,4 +52,29 @@ const createPaymentController = async (req, res) => {
   }
 };
 
-module.exports = { createPaymentController };
+const sendEmailController = async (req, res) => {
+  const { to, subject, text } = req.body;
+
+  const mailOptions = {
+    from: `Nakul Attrey - Airbnb <${process.env.MAIL_MY_EMAIL}>`,
+    to: to,
+    subject: subject,
+    text: text,
+  };
+
+  console.log("Sending email to:", to);
+  console.log("Email subject:", subject);
+  console.log("Email text:", text);
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email:", error);
+      return res.status(500).send(`Error sending email: ${error.message}`);
+    }
+
+    console.log("Email sent:", info.response);
+    res.status(200).send("Email sent: " + info.response);
+  });
+};
+
+module.exports = { createPaymentController, sendEmailController };

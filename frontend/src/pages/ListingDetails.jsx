@@ -14,6 +14,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
+  const [emailData, setEmailData] = useState("");
 
   const { listingId } = useParams();
   const [listing, setListing] = useState(null);
@@ -91,57 +92,88 @@ const ListingDetails = () => {
       };
 
       // payment integeration
-      const makePayment = async () => {
-        try {
-          const stripe = await loadStripe(
-            process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
-          );
+      // const makePayment = async () => {
+      //   try {
+      //     const stripe = await loadStripe(
+      //       process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
+      //     );
 
-          const headers = {
-            "Content-Type": "application/json",
-          };
+      //     const headers = {
+      //       "Content-Type": "application/json",
+      //     };
 
-          const response = await fetch(
-            "http://localhost:5000/payment/checkout",
-            {
-              method: "POST",
-              headers: headers,
-              body: JSON.stringify(body),
-            }
-          );
+      //     const response = await fetch(
+      //       "http://localhost:5000/payment/checkout",
+      //       {
+      //         method: "POST",
+      //         headers: headers,
+      //         body: JSON.stringify(body),
+      //       }
+      //     );
 
-          const session = await response.json();
+      //     const session = await response.json();
 
-          const result = stripe.redirectToCheckout({
-            sessionId: session.id,
-          });
+      //     const result = stripe.redirectToCheckout({
+      //       sessionId: session.id,
+      //     });
 
-          if (result.error) toast.error("Error in Payment from Stripe");
-        } catch (error) {
-          toast.error("Error: Unable to process payment");
-          console.error("Error during payment:", error.message);
-        }
-      };
+      //     if (result.error) toast.error("Error in Payment from Stripe");
+      //   } catch (error) {
+      //     toast.error("Error: Unable to process payment");
+      //     console.error("Error during payment:", error.message);
+      //   }
+      // };
 
-      makePayment();
+      // await makePayment();
 
       // booking to the user
       const bookingUser = async () => {
-      const response = await fetch("http://localhost:5000/bookings/create", {
+        const response = await fetch("http://localhost:5000/bookings/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookingForm),
+        });
+
+        if (response.ok) {
+          toast.success("Booking Sucessfull");
+          navigate(`/${customerId}/trips`);
+
+          // sending email
+          // const emailResponse = await fetch(
+          //   "http://localhost:5000/payment/email",
+          //   {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify({
+          //       to: emailData,
+          //       subject: "Booking Confirmation",
+
+          //       text: `Your booking for ${listing.title} from ${bookingForm.startDate} to ${bookingForm.endDate} is confirmed. Total Price: ${bookingForm.totalPrice}`,
+          //     }),
+          //   }
+          // );
+        }
+      };
+
+      // await bookingUser();
+      const emailResponse = await fetch("http://localhost:5000/payment/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(bookingForm),
+        body: JSON.stringify({
+          to: emailData,
+          subject: "Booking Confirmation",
+          text: `Your booking for ${listing.title} from ${bookingForm.startDate} to ${bookingForm.endDate} is confirmed. Total Price: ${bookingForm.totalPrice}`,
+        }),
       });
+      console.log('1', 1);
 
-      if (response.ok) {
-        navigate(`/${customerId}/trips`);
-      }
-      }
-
-      bookingUser();
-
+      await emailResponse();
     } catch (err) {
       toast.error("Submit Booking Failed.");
     }
@@ -232,6 +264,18 @@ const ListingDetails = () => {
               <h2>Total price: ${listing.price * dayCount}</h2>
               <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
               <p>End Date: {dateRange[0].endDate.toDateString()}</p>
+
+              <input
+                type="text"
+                value={emailData}
+                onChange={(e) => setEmailData(e.target.value)}
+                placeholder="Write your email to get Booking Confirmation"
+                style={{
+                  border: "1px solid red",
+                  padding: "8px",
+                  borderRadius: "4px",
+                }}
+              />
 
               <button className="button" type="submit" onClick={handleSubmit}>
                 BOOKING
