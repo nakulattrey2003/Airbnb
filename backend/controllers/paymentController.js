@@ -45,7 +45,7 @@ const createPaymentController = async (req, res) => {
       cancel_url: "http://localhost:3000/payment/cancel",
     });
 
-    res.json({ id: session.id });
+    res.json({ sucess: true, id: session.id });
   } catch (error) {
     console.error("Error creating payment session:", error.message);
     res.status(500).send("Internal Server Error");
@@ -61,10 +61,6 @@ const sendEmailController = async (req, res) => {
     subject: subject,
     text: text,
   };
-
-  console.log("Sending email to:", to);
-  console.log("Email subject:", subject);
-  console.log("Email text:", text);
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {

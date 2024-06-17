@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SuccessPage = () => {
   const styles = {
@@ -51,14 +52,14 @@ const SuccessPage = () => {
         />
         <h1>Payment Successful!</h1>
         <p>Thank you for your purchase.</p>
-        <a
-          href="/"
+        <Link
+          to="/"
           style={styles.homeButton}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
           Go to Home
-        </a>
+        </Link>
       </div>
     </>
   );

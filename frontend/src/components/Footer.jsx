@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom"
 import "../styles/Footer.scss"
 import { LocationOn, LocalPhone, Email } from "@mui/icons-material"
 const Footer = () => {
   return (
     <div className="footer">
       <div className="footer_left">
-        <a href="/"><img src="/assets/airbnbLogoRound.png" alt="airbnbLogo" /></a>
+        <Link to="/"><img src="/assets/airbnbLogoRound.png" alt="airbnbLogo" /></Link>
       </div>
 
       <div className="footer_center">

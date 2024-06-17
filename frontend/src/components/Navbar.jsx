@@ -21,9 +21,9 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <a href="/">
+      <Link to="/">
         <img src="/assets/airbnbLogo.png" alt="airbnbLogo" />
-      </a>
+      </Link>
 
       <div className="navbar_search">
         <input

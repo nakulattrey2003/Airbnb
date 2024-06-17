@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CancelPage = () => {
   const styles = {
@@ -51,14 +52,14 @@ const CancelPage = () => {
         />
         <h1>Booking Canceled</h1>
         <p>Retry or Wait for some time.</p>
-        <a
-          href="/"
+        <Link
+          to="/"
           style={styles.homeButton}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
           Go to Home
-        </a>
+        </Link>
       </div>
     </>
   );

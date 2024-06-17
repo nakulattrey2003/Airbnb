@@ -83,6 +83,36 @@ const ListingDetails = () => {
         totalPrice: listing.price * dayCount,
       };
 
+      // Step : Book the property
+      const bookingResponse = await bookProperty(bookingForm);
+      // if (!bookingResponse.success) {
+      //   toast.error("Booking failed. Please try again.");
+      //   return;
+      // }
+
+      // Step : Send Email
+      const emailResponse = await sendConfirmationEmail(bookingForm);
+      // if (!emailResponse.success) {
+      //   toast.error("Email sending failed. Please try again.");
+      //   return;
+      // }
+
+      // Step : Make Payment
+      const paymentResponse = await makePayment(bookingForm);
+      // if (!paymentResponse.success) {
+      //   toast.error("Payment failed. Please try again.");
+      //   return;
+      // }
+
+      toast.success("Booking, Payment, and Email sent successfully.");
+      navigate(`/${customerId}/trips`);
+    } catch (err) {
+      toast.error("Submit Booking Failed.");
+    }
+  };
+
+  const makePayment = async (bookingForm) => {
+    try {
       const body = {
         amount: bookingForm.totalPrice,
         listingName: listing.title,
@@ -91,76 +121,60 @@ const ListingDetails = () => {
         listingPhoto: listing.listingPhotoPaths[0],
       };
 
-      // payment integeration
-      // const makePayment = async () => {
-      //   try {
-      //     const stripe = await loadStripe(
-      //       process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
-      //     );
+      const headers = {
+        "Content-Type": "application/json",
+      };
 
-      //     const headers = {
-      //       "Content-Type": "application/json",
-      //     };
+      const response = await fetch("http://localhost:5000/payment/checkout", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      });
 
-      //     const response = await fetch(
-      //       "http://localhost:5000/payment/checkout",
-      //       {
-      //         method: "POST",
-      //         headers: headers,
-      //         body: JSON.stringify(body),
-      //       }
-      //     );
+      const session = await response.json();
 
-      //     const session = await response.json();
+      const stripe = await loadStripe(
+        process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
+      );
+      const result = await stripe.redirectToCheckout({ sessionId: session.id });
 
-      //     const result = stripe.redirectToCheckout({
-      //       sessionId: session.id,
-      //     });
+      if (session.success == false) {
+        console.error("Error in Stripe checkout:", result.error.message);
+        return { success: false };
+      }
 
-      //     if (result.error) toast.error("Error in Payment from Stripe");
-      //   } catch (error) {
-      //     toast.error("Error: Unable to process payment");
-      //     console.error("Error during payment:", error.message);
-      //   }
-      // };
+      return { success: true };
+    } catch (error) {
+      console.error("Error during payment:", error.message);
+      return { success: false };
+    }
+  };
 
-      // await makePayment();
+  const bookProperty = async (bookingForm) => {
+    try {
+      const response = await fetch("http://localhost:5000/bookings/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingForm),
+      });
 
-      // booking to the user
-      // const bookingUser = async () => {
-      //   const response = await fetch("http://localhost:5000/bookings/create", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(bookingForm),
-      //   });
+      if (!response.ok) {
+        toast.error("Error booking property");
+        return { success: false };
+      }
 
-      //   if (response.ok) {
-      //     toast.success("Booking Sucessfull");
-      //     navigate(`/${customerId}/trips`);
+      return { success: true };
+    } catch (error) {
+      toast.error("Error booking property");
+      return { success: false };
+    }
+  };
 
-          // sending email
-          // const emailResponse = await fetch(
-          //   "http://localhost:5000/payment/email",
-          //   {
-          //     method: "POST",
-          //     headers: {
-          //       "Content-Type": "application/json",
-          //     },
-          //     body: JSON.stringify({
-          //       to: emailData,
-          //       subject: "Booking Confirmation",
-
-          //       text: `Your booking for ${listing.title} from ${bookingForm.startDate} to ${bookingForm.endDate} is confirmed. Total Price: ${bookingForm.totalPrice}`,
-          //     }),
-          //   }
-          // );
-      //   }
-      // };
-
-      // await bookingUser();
-      const emailResponse = await fetch("http://localhost:5000/payment/email", {
+  const sendConfirmationEmail = async (bookingForm) => {
+    try {
+      const response = await fetch("http://localhost:5000/payment/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -172,9 +186,15 @@ const ListingDetails = () => {
         }),
       });
 
-      await emailResponse();
-    } catch (err) {
-      toast.error("Submit Booking Failed.");
+      if (!response.ok) {
+        console.error("Error sending email:", response.statusText);
+        return { success: false };
+      }
+
+      return { success: true };
+    } catch (error) {
+      console.error("Error sending email:", error.message);
+      return { success: false };
     }
   };
 
