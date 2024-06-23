@@ -84,13 +84,14 @@ Admin Panel Management: Admins can manage property listings and user data throug
 
 ## Installation
 
-To use ShoesWala, follow these steps:
+To use Airbnb, follow these steps:
 
 1. Clone the repository: `https://github.com/nakulattrey2003/Airbnb.git`
 2. Navigate to the project directory: `cd Airbnb`
 3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
-5. Open your browser and visit `http://localhost:3000` to view the application.
+4. Go to backend and then start server: `cd backend` then `npm start`
+5. Go to backend and then start server: `cd frontend` then `npm start`
+6. Open your browser and visit `http://localhost:3000` to view the application.
 
 ## Resources
 - Youtube
