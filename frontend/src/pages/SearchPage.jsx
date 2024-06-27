@@ -19,7 +19,7 @@ const SearchPage = () => {
   const getSearchListings = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/properties/search/${search}`,
+        `${process.env.REACT_APP_API_URL}/properties/search/${search}`,
         {
           method: "GET",
         }

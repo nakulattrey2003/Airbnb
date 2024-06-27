@@ -51,7 +51,7 @@ const UpdatePage = () => {
       }
 
       const response = await fetch(
-        `http://localhost:5000/users/${userId}/update`,
+        `${process.env.REACT_APP_API_URL}/users/${userId}/update`,
         {
           method: "PATCH",
           body: update_form,

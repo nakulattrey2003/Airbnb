@@ -16,9 +16,12 @@ const PropertyList = () => {
   const dispatch = useDispatch()
   const getPropertyList = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/users/${user._id}/properties`, {
-        method: "GET"
-      })
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/users/${user._id}/properties`,
+        {
+          method: "GET",
+        }
+      );
       const data = await response.json()
       dispatch(setPropertyList(data))
       setLoading(false)
