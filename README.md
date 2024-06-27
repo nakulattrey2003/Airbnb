@@ -88,10 +88,11 @@ To use Airbnb, follow these steps:
 
 1. Clone the repository: `https://github.com/nakulattrey2003/Airbnb.git`
 2. Navigate to the project directory: `cd Airbnb`
-3. Install dependencies: `npm install`
-4. Go to backend and then start server: `cd backend` then `npm start`
-5. Go to backend and then start server: `cd frontend` then `npm start`
-6. Open your browser and visit `http://localhost:3000` to view the application.
+3. Go to backend and then start server: `cd backend` then `npm start`
+4. Install dependencies: `npm install`
+5. Go to frontend and then start server: `cd frontend` then `npm start`
+6. Install dependencies: `npm install`
+7. Open your browser and visit `http://localhost:3000` to view the application.
 
 ## Resources
 - Youtube
