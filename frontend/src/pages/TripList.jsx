@@ -18,14 +18,14 @@ const TripList = () => {
   const getTripList = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/${userId}/trips`,
+        `http://localhost:5000/users/${userId}/trips`,
         {
           method: "GET",
         }
       );
 
       const data = await response.json();
-      dispatch(setTripList(data));   // this sets the tripList value in the store.
+      dispatch(setTripList(data)); // this sets the tripList value in the store.
       setLoading(false);
     } catch (err) {
       toast.error("Fetch Trip List failed!");
@@ -44,7 +44,8 @@ const TripList = () => {
       <Navbar />
       <h1 className="title-list">Your Trip List</h1>
       <div className="list">
-        {tripList?.map(    // this tripList is from the store
+        {tripList?.map(
+          // this tripList is from the store
           ({
             listingId,
             hostId,

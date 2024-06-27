@@ -5,7 +5,7 @@ import "../styles/UpdatePage.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateUserProfile } from "../redux/state.js";
-import Navbar from "../components/Navbar.jsx"
+import Navbar from "../components/Navbar.jsx";
 
 const UpdatePage = () => {
   const [formData, setFormData] = useState({
@@ -51,7 +51,7 @@ const UpdatePage = () => {
       }
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/${userId}/update`,
+        `http://localhost:5000/users/${userId}/update`,
         {
           method: "PATCH",
           body: update_form,
@@ -78,53 +78,53 @@ const UpdatePage = () => {
   return (
     <div>
       <Navbar />
-    <div className="update-page">
-      <h1 className="update-header">Update Profile</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <div className="password-container">
+      <div className="update-page">
+        <h1 className="update-header">Update Profile</h1>
+        <form onSubmit={handleSubmit}>
           <input
-            placeholder="Password"
-            name="password"
-            value={formData.password}
+            placeholder="Name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
-            type={showPassword ? "text" : "password"}
           />
-          <button
-            type="button"
-            onClick={toggleShowPassword}
-            className="toggle-password-btn"
-          >
-            {showPassword ? "Hide" : "Show"}
-          </button>
-        </div>
-        <input
-          id="photo"
-          type="file"
-          name="profileImage"
-          accept="image/*"
-          style={{ display: "none" }}
-          onChange={handleChange}
-        />
-        <label htmlFor="photo" className="image-uploader">
-          <img src="/assets/uploadBlack.png" alt="add profile photo" />
-          <p>Upload Your Photo</p>
-        </label>
-        {formData.profileImage && (
-          <img
-            src={URL.createObjectURL(formData.profileImage)}
-            alt="profile photo"
-            className="photo-preview"
+          <div className="password-container">
+            <input
+              placeholder="Password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              type={showPassword ? "text" : "password"}
+            />
+            <button
+              type="button"
+              onClick={toggleShowPassword}
+              className="toggle-password-btn"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+          <input
+            id="photo"
+            type="file"
+            name="profileImage"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handleChange}
           />
-        )}
-        <button type="submit">Update</button>
-      </form>
-    </div>
+          <label htmlFor="photo" className="image-uploader">
+            <img src="/assets/uploadBlack.png" alt="add profile photo" />
+            <p>Upload Your Photo</p>
+          </label>
+          {formData.profileImage && (
+            <img
+              src={URL.createObjectURL(formData.profileImage)}
+              alt="profile photo"
+              className="photo-preview"
+            />
+          )}
+          <button type="submit">Update</button>
+        </form>
+      </div>
     </div>
   );
 };

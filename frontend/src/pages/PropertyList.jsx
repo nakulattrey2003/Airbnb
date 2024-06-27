@@ -5,37 +5,39 @@ import ListingCard from "../components/ListingCard";
 import { useEffect, useState } from "react";
 import { setPropertyList } from "../redux/state";
 import Loader from "../components/Loader";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 import { toast } from "react-toastify";
 
 const PropertyList = () => {
-  const [loading, setLoading] = useState(true)
-  const user = useSelector((state) => state.user)
+  const [loading, setLoading] = useState(true);
+  const user = useSelector((state) => state.user);
   const propertyList = user?.propertyList;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const getPropertyList = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/${user._id}/properties`,
+        `http://localhost:5000/users/${user._id}/properties`,
         {
           method: "GET",
         }
       );
-      const data = await response.json()
-      dispatch(setPropertyList(data))
-      setLoading(false)
+      const data = await response.json();
+      dispatch(setPropertyList(data));
+      setLoading(false);
     } catch (err) {
       toast.error("Fetch all properties failed");
       // console.log("Fetch all properties failed", err.message)
     }
-  }
+  };
 
   useEffect(() => {
-    getPropertyList()
-  }, [])
+    getPropertyList();
+  }, []);
 
-  return loading ? <Loader /> : (
+  return loading ? (
+    <Loader />
+  ) : (
     <>
       <Navbar />
       <h1 className="title-list">Your Property List</h1>

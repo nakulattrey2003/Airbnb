@@ -54,7 +54,7 @@ const RegisterPage = () => {
         register_form.append(key, formData[key]);
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/register`, {
+      const response = await fetch(`http://localhost:5000/auth/register`, {
         method: "POST",
         body: register_form,
       });
@@ -68,7 +68,7 @@ const RegisterPage = () => {
         // toast.error("User Already Exists");
       }
     } catch (err) {
-      toast.error("Registeration Failed")
+      toast.error("Registeration Failed");
       // console.log("Registration failed", err.message);
     }
   };
