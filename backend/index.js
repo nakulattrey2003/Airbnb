@@ -19,6 +19,11 @@ app.use(express.static("public"));
 
 const PORT = process.env.PORT || 5000;
 
+// check purposes
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
+
 app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
 app.use("/bookings", bookingRoutes);
