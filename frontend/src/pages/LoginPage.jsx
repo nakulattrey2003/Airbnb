@@ -20,13 +20,16 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:5000/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       /* Get data after fetching */
       const loggedIn = await response.json();

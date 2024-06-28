@@ -14,13 +14,15 @@ const Listings = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const listings = useSelector((state) => state.listings);
+  
+  console.log("REACT_APP_API_URL:", process.env.REACT_APP_API_URL);
 
   const getFeedListings = async () => {
     try {
       const response = await fetch(
         selectedCategory !== "All"
-          ? `http://localhost:5000/properties?category=${selectedCategory}`
-          : `http://localhost:5000/properties`,
+          ? `${process.env.REACT_APP_API_URL}/properties?category=${selectedCategory}`
+          : `${process.env.REACT_APP_API_URL}/properties`,
         {
           method: "GET",
         }

@@ -30,6 +30,15 @@ app.use("/bookings", bookingRoutes);
 app.use("/users", userRoutes);
 app.use("/payment", paymentRoutes);
 
+// ********** deployment ********** //
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+// Handle React routing, return all requests to React app
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+});
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -42,13 +51,3 @@ mongoose
 // batman - 662e26662e31c2394578b1e2
 // Panchkula - 662dc0be56908a8b00d33c7c owned by wolf
 // NY - 662e3ed5e1f8939013160a90 owned by batman
-
-// deployment
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-// Handle React routing, return all requests to React app
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});

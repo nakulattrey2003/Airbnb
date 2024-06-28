@@ -22,7 +22,7 @@ const ListingDetails = () => {
   const getListingDetails = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/properties/${listingId}`,
+        `${process.env.REACT_APP_API_URL}/properties/${listingId}`,
         {
           method: "GET",
         }
@@ -125,11 +125,14 @@ const ListingDetails = () => {
         "Content-Type": "application/json",
       };
 
-      const response = await fetch(`http://localhost:5000/payment/checkout`, {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/payment/checkout`,
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(body),
+        }
+      );
 
       const session = await response.json();
 
@@ -152,13 +155,16 @@ const ListingDetails = () => {
 
   const bookProperty = async (bookingForm) => {
     try {
-      const response = await fetch(`http://localhost:5000/bookings/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookingForm),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/bookings/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookingForm),
+        }
+      );
 
       if (!response.ok) {
         toast.error("Error booking property");
@@ -174,17 +180,20 @@ const ListingDetails = () => {
 
   const sendConfirmationEmail = async (bookingForm) => {
     try {
-      const response = await fetch(`http://localhost:5000/payment/email`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          to: emailData,
-          subject: "Booking Confirmation",
-          text: `Your booking for ${listing.title} from ${bookingForm.startDate} to ${bookingForm.endDate} is confirmed. Total Price: ${bookingForm.totalPrice}`,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/payment/email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            to: emailData,
+            subject: "Booking Confirmation",
+            text: `Your booking for ${listing.title} from ${bookingForm.startDate} to ${bookingForm.endDate} is confirmed. Total Price: ${bookingForm.totalPrice}`,
+          }),
+        }
+      );
 
       if (!response.ok) {
         console.error("Error sending email:", response.statusText);
@@ -213,7 +222,10 @@ const ListingDetails = () => {
         <div className="photos">
           {listing.listingPhotoPaths?.map((item) => (
             <img
-              src={`http://localhost:5000/${item.replace("public", "")}`}
+              src={`${process.env.REACT_APP_API_URL}/${item.replace(
+                "public",
+                ""
+              )}`}
               alt="listing photo"
             />
           ))}
