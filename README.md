@@ -74,6 +74,18 @@ Oauth
 
 ![image](https://github.com/nakulattrey2003/Airbnb/assets/101697066/d3af172b-bd6d-4a14-a51d-7adb1877ce07)
 
+- Stripe Page
+  ![image](https://github.com/user-attachments/assets/01f4c965-c811-40c5-8454-231d4fc4fbd0)
+
+  Sucess Page
+  ![image](https://github.com/user-attachments/assets/ef26d2d3-911a-4e40-8968-f84f1c690ec4)
+  
+  Cancel Page
+  ![image](https://github.com/user-attachments/assets/7f7c7763-409a-4e6c-872f-f10e01746452)
+
+
+
+
 
 ## Description
 The Property Booking Platform is designed to provide users with a versatile and efficient platform for booking properties. With Firebase OAuth authentication, users can securely manage their accounts and bookings. The integration of Redux ensures efficient state management, while advanced search and filtering functionalities enhance the user experience. Admin panel management allows admins to oversee and manage property listings and user data effectively.
