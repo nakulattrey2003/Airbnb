@@ -1,5 +1,7 @@
 # Airbnb
 
+Live Link: https://airbnb-392q.onrender.com/
+
 Welcome to the Property Booking Platform! This versatile website is built using the MERN stack and integrates Firebase OAuth authentication for secure user management. Users can seamlessly book, like, and rent properties, while advanced search and filtering functionalities enhance the overall user experience.
 
 ## Tech Stack
@@ -109,5 +111,5 @@ To use Airbnb, follow these steps:
 Nakul Attrey
 
 ## Link to the app: 
-(Working on it)
 Live Link 
+https://airbnb-392q.onrender.com/
