@@ -41,8 +41,8 @@ const createPaymentController = async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `${process.env.REACT_APP_API_URL}/payment/success`,
-      cancel_url: `${process.env.REACT_APP_API_URL}/payment/cancel`,
+      success_url: `http://localhost:3000/payment/success`,
+      cancel_url: `http://localhost:3000/payment/cancel`,
     });
 
     res.json({ sucess: true, id: session.id });
@@ -72,5 +72,7 @@ const sendEmailController = async (req, res) => {
     res.status(200).send("Email sent: " + info.response);
   });
 };
+
+
 
 module.exports = { createPaymentController, sendEmailController };
